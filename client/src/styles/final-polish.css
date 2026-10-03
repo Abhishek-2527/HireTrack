@@ -1,0 +1,127 @@
+/* Small, shared finishing touches for the established HireTrack UI. */
+.main-panel > .page-shell { animation: hiretrack-page-in 190ms ease-out both; }
+.auth-shell { width: 100%; min-width: 0; }
+.auth-card { max-width: 100%; min-width: 0; }
+@keyframes hiretrack-page-in {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+button, .primary-btn, .secondary-btn, .danger-btn, .nav-logout, .nav-list a,
+.card, .form-input, .form-select, input, select, textarea { transition-duration: 180ms; }
+.primary-btn:not(:disabled):active, .secondary-btn:not(:disabled):active,
+.danger-btn:not(:disabled):active, .nav-logout:not(:disabled):active {
+  transform: translateY(1px); box-shadow: none; filter: none;
+}
+.primary-btn:disabled, .secondary-btn:disabled, .danger-btn:disabled,
+.nav-logout:disabled { filter: none; box-shadow: none; }
+button:focus-visible, a:focus-visible, input:focus-visible,
+select:focus-visible, textarea:focus-visible { outline: 3px solid rgba(81,69,205,.35); outline-offset: 2px; }
+
+/* Keep hover elevation on elements that are actually interactive. */
+.dashboard-kpi:hover, .recent-application-item:hover,
+.dashboard-followup-item:hover, .dashboard-follow-up-row:hover,
+.kanban-card:hover { transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease, background-color 180ms ease; }
+.interviews-page .list-row-item:hover, .interviews-page .interview-card:hover,
+.saved-jobs-page .interview-card:hover, .follow-ups-page .follow-up-card:hover {
+  transform: none; box-shadow: 0 3px 14px rgba(29,39,77,.045);
+}
+
+.nav-list a { overflow: hidden; }
+.nav-list a.active { box-shadow: none; }
+.nav-list a::before {
+  position: absolute; inset: 50% auto auto 0; width: 3px; height: 0;
+  border-radius: 0 4px 4px 0; background: #5145cd; content: '';
+  transform: translateY(-50%); transition: height 180ms ease;
+}
+.nav-list a.active::before { height: 21px; }
+.nav-list a .nav-icon { transition: transform 180ms ease, color 180ms ease; }
+.nav-list a:hover .nav-icon { transform: translateX(1px); }
+.nav-list a:focus-visible { outline-offset: 1px; }
+@media (max-width: 900px) {
+  .nav-list a::before { inset: auto auto 0 50%; width: 0; height: 3px; transform: translateX(-50%); }
+  .nav-list a.active::before { width: 24px; height: 3px; }
+}
+
+.filter-panel input[aria-label*="Search"], .filter-panel input[placeholder*="Search"] {
+  padding-left: 39px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%238991a3' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='10.8' cy='10.8' r='6.8'/%3E%3Cpath d='m16 16 4.5 4.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: 13px center; background-size: 16px;
+}
+.filter-panel input[aria-label*="Search"]:focus, .filter-panel input[placeholder*="Search"]:focus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%235145cd' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='10.8' cy='10.8' r='6.8'/%3E%3Cpath d='m16 16 4.5 4.5'/%3E%3C/svg%3E");
+}
+.form-input:disabled, .form-select:disabled, .auth-form input:disabled,
+.application-form input:disabled, .application-form select:disabled,
+.application-form textarea:disabled { color: #8d95a5; background-color: #f4f5f8; cursor: not-allowed; }
+.password-field { overflow: hidden; }
+.auth-form .password-field input { min-width: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.auth-form .password-field input:focus { border: 0; box-shadow: none; outline: none; }
+.form-input.input-error, .form-select.input-error, .auth-form input.input-error,
+.application-form input.input-error, .application-form select.input-error,
+.application-form textarea.input-error { border-color: #ce7880 !important; box-shadow: 0 0 0 3px rgba(190,99,112,.1); }
+
+.toast {
+  display: flex; align-items: center; gap: 10px; animation: hiretrack-toast-in 190ms ease-out both;
+  border-radius: 13px; font-size: .86rem;
+}
+.toast::before, .error-banner::before, .form-error::before {
+  display: grid; width: 22px; height: 22px; flex: 0 0 22px; place-items: center;
+  border-radius: 50%; font-size: .75rem; font-weight: 800; line-height: 1;
+}
+.success-toast::before { background: #d7f0e2; color: #18704f; content: '✓'; }
+.error-toast::before, .error-banner::before, .form-error::before { background: #f7dfe0; color: #a83a47; content: '!'; }
+.error-banner { display: flex; align-items: center; gap: 9px; }
+.error-banner > button { margin-left: auto; flex: 0 0 auto; }
+.form-error { border-radius: 10px; }
+.form-error::before { display: inline-grid; margin-right: 7px; vertical-align: -5px; }
+@keyframes hiretrack-toast-in { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
+.status-badge { gap: 6px; border-radius: 999px; padding: 5px 9px; font-size: .72rem; line-height: 1.2; }
+.status-badge::before { width: 6px; height: 6px; flex: 0 0 6px; border-radius: 50%; background: currentColor; content: ''; opacity: .72; }
+.pagination-bar { gap: 12px; }
+.pagination-bar > span {
+  min-width: 95px; padding: 8px 11px; border: 1px solid #e8eaf1; border-radius: 9px;
+  background: #fff; color: #69748a; text-align: center;
+}
+.pagination-bar button:disabled { border-color: #eceef3; background: #f7f8fa; color: #a2a8b5; opacity: 1; }
+.pagination-bar button:not(:disabled):hover { border-color: #d5d2f2; color: #5145cd; }
+.date-emphasis { color: #46516a; font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+
+.application-skeleton-list, .follow-up-skeleton-list { display: grid; gap: 10px; }
+.application-skeleton-row, .follow-up-skeleton-row { height: 56px; border: 1px solid #eceef4; border-radius: 11px; }
+.application-skeleton-toolbar { height: 76px; border: 1px solid #eceef4; border-radius: 14px; }
+.page-loading-skeleton { display: grid; gap: 19px; padding: 23px; }
+.page-skeleton-title { width: 34%; height: 25px; }
+.page-skeleton-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+.page-skeleton-field { display: grid; gap: 8px; }
+.page-skeleton-label { width: 38%; height: 10px; }
+.page-skeleton-value { height: 36px; border-radius: 9px; }
+.page-skeleton-notes { width: 100%; height: 65px; border-radius: 9px; }
+.interview-skeleton-grid, .saved-job-skeleton-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 14px; }
+.interview-skeleton-card, .saved-job-skeleton-card { min-height: 205px; padding: 17px; border: 1px solid #eceef4; border-radius: 15px; background: #fff; }
+.interview-skeleton-card .skeleton, .saved-job-skeleton-card .skeleton { height: 13px; margin: 12px 0; }
+.interview-skeleton-card .skeleton:first-child, .saved-job-skeleton-card .skeleton:first-child { width: 42%; height: 23px; }
+.interview-skeleton-card .skeleton:last-child, .saved-job-skeleton-card .skeleton:last-child { width: 65%; }
+.interview-stat-skeleton { width: 45px; height: 27px; margin-top: 8px; }
+@media (max-width: 900px) { .interview-skeleton-grid, .saved-job-skeleton-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media (max-width: 600px) {
+  .main-panel > .page-shell { animation-duration: 150ms; }
+  .auth-shell { padding: 16px; }
+  .auth-card { width: 100%; }
+  .toast { top: 12px; right: 12px; left: 12px; width: auto; max-width: none; }
+  .page-loading-skeleton { gap: 14px; padding: 16px; }
+  .page-skeleton-grid { grid-template-columns: minmax(0,1fr); gap: 11px; }
+  .page-skeleton-title { width: 52%; }
+  .page-skeleton-notes { height: 54px; }
+  .interview-skeleton-grid, .saved-job-skeleton-grid { grid-template-columns: minmax(0,1fr); }
+  .pagination-bar { gap: 7px; }
+  .pagination-bar .secondary-btn { min-width: 76px; padding-inline: 9px; }
+  .pagination-bar > span { min-width: 0; padding-inline: 8px; font-size: .75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .main-panel > .page-shell, .toast { animation: none; }
+  .nav-list a::before, .nav-list a .nav-icon { transition: none; }
+  .dashboard-kpi:hover, .recent-application-item:hover, .dashboard-followup-item:hover,
+  .dashboard-follow-up-row:hover, .kanban-card:hover { transition: none; }
+}
