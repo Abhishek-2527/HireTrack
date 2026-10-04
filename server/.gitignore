@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.local
+client/node_modules/
+client/dist/
+client/.vite/
+coverage/
+.DS_Store
+npm-debug.log*
+*.zip
