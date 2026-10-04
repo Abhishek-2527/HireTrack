@@ -3,7 +3,7 @@ const cors = require("cors");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 
-const connectDB = require("./server/config/db");
+const connectDB = require("./config/db");
 const routes = require("./server/routes");
 const errorHandler = require("./server/middleware/errorHandler");
 
