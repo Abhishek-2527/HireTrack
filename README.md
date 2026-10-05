@@ -1,4 +1,4 @@
-# 🚀 HireTrack — Job Application & Interview Tracker
+# 🚀 HireTrack — Job Application & Interview Trackerr
 
 <p align="center">
   <b>A full-stack job application and interview tracking platform built with the MERN stack.</b>
